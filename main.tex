@@ -8,48 +8,65 @@
 \usepackage{cite} % takes care of citations
 \usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
 \hypersetup{
-	colorlinks=true,       % false: boxed links; true: colored links
-	linkcolor=blue,        % color of internal links
-	citecolor=blue,        % color of links to bibliography
-	filecolor=magenta,     % color of file links
-	urlcolor=blue         
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,        % color of internal links
+    citecolor=blue,        % color of links to bibliography
+    filecolor=magenta,     % color of file links
+    urlcolor=blue         
 }
 %++++++++++++++++++++++++++++++++++++++++
 
 
 \begin{document}
 
-\title{Some complicated title}
-\author{Aman Raj and Anurag Paul}
+\title{Predicting Fraudulent Financial Transactions}
+\author{Aman Raj (A53247556) and Anurag Paul (A53271562)}
 \date{\today}
 \maketitle
 
-\begin{abstract}
-Tell me something even more complicated
-\end{abstract}
+%\begin{abstract}
+%\end{abstract}
 
 
 \section{Introduction}
 
-Pass
-
+Financial Fraud has become quite prevalent with the advancement of modern technology. Frauds cost customers and financial institutions millions annually which necessitate the development of robust fraud detection systems. However, research in this domain is quite limited due to the unavailability of open data sets. In this project, we intend to use synthetically generated financial data with injected malicious transactions so as to develop our fraud detection system. 
 
 \section{Problem Formulation}
+For this project, We use synthetically generated dataset from Paysim\cite{paysim} software. Paysim generates a synthetic dataset that resembles the normal operation of transactions and injects malicious behavior and thus provides a benchmark to evaluate the performance of fraud detection methods. In order to develop our fraud detection system, we intend to do the following:
 
-Pass
+\begin{enumerate}
+\item Dataset preprocessing such as handling dataset imbalance, removing invalid entries
+\item Analysis of fraudulent transactions to understand the relative importance of different features
+\item Feature engineering to generate more relevant features
+\item Predictive modeling using techniques such as Naive Bayes, Logistic Regression, Maximum Likelihood Estimation, Support Vector Machines and Ensemble Methods to detect fraudulent transactions
+\end{enumerate}
 
+\subsection{Dataset}
+Data-set contains 5 files each with 30 days of simulated data and with the following features:-
+\begin{itemize}
+    \item step - unit of time; 1 step is 1 hour of time
+    \item type - CASH-IN, CASH-OUT, DEBIT, PAYMENT, and TRANSFER
+    \item amount - transaction amount in local currency
+    \item nameOrig - customer starting the transaction
+    \item oldbalanceOrg - account balance before the transaction
+    \item newbalanceOrig - account balance after the transaction
+    \item nameDest - recipient of the transaction
+    \item oldbalanceDest - balance of recipient before the transaction (not available for Merchants)
+    \item newbalanceDest - balance of recipient after the transaction (not available for Merchants)
+    \item isFraud - Transactions made by the fraudulent agents inside the simulation
+    \item isFlaggedFraud - flags illegal attempts wherein more than 200,000 is attempted to be transferred in a single transaction
+\end{itemize}
 
-\section{Technical Approach}
-Pass
+%\section{Technical Approach}
+%Pass
 
 
 \section{Result}
-Pass
-
-
+Here we will show the result of our various analysis and technical approach to predictive modeling to detect fraudulent transactions.
 
 \section{Conclusions}
-Pass
+Through this work, we propose a systematic approach to analyze and create statistical models to prevent fraudulent financial transactions.
 
 %++++++++++++++++++++++++++++++++++++++++
 % References section will be created automatically 
@@ -62,12 +79,12 @@ Pass
 \begin{thebibliography}{99}
 
 \bibitem{paysim}
-E. A. Lopez-Rojas , A. Elmir, and S. Axelsson. "PaySim: A financial mobile money simulator for fraud detection". In: The 28th European Modeling and Simulation Symposium-EMSS, Larnaca, Cyprus. 2016
+E. A. Lopez-Rojas, A. Elmir, and S. Axelsson. ``PaySim: A financial mobile money simulator for fraud detection". In: The 28th European Modeling and Simulation Symposium-EMSS, Larnaca, Cyprus. 2016
 
-\bibitem{Cyr}
-N.\ Cyr, M.\ T$\hat{e}$tu, and M.\ Breton,
+%\bibitem{Cyr}
+%N.\ Cyr, M.\ T$\hat{e}$tu, and M.\ Breton,
 % "All-optical microwave frequency standard: a proposal,"
-IEEE Trans.\ Instrum.\ Meas.\ \textbf{42}, 640 (1993).
+%IEEE Trans.\ Instrum.\ Meas.\ \textbf{42}, 640 (1993).
 
 %\bibitem{Wiki} \emph{Expected value},  available at
 %\texttt{http://en.wikipedia.org/wiki/Expected\_value}.
