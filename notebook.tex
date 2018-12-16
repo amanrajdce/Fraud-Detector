@@ -1,0 +1,1176 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Fraudulent\_Transaction\_Detection}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsubsection{Import required
+libraries}\label{import-required-libraries}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{cm} \PY{k}{as} \PY{n+nn}{cm}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{lines} \PY{k}{as} \PY{n+nn}{mlines}
+        
+        \PY{k+kn}{from} \PY{n+nn}{mpl\PYZus{}toolkits}\PY{n+nn}{.}\PY{n+nn}{mplot3d} \PY{k}{import} \PY{n}{Axes3D}
+        \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+        
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{,} \PY{n}{learning\PYZus{}curve}
+        \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{average\PYZus{}precision\PYZus{}score}
+        
+        \PY{k+kn}{from} \PY{n+nn}{xgboost}\PY{n+nn}{.}\PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{XGBClassifier}
+        \PY{k+kn}{from} \PY{n+nn}{xgboost} \PY{k}{import} \PY{n}{plot\PYZus{}importance}\PY{p}{,} \PY{n}{to\PYZus{}graphviz}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{import} \PY{n+nn}{warnings}
+        \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ignore}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{category}\PY{o}{=}\PY{n+ne}{DeprecationWarning}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Import data and correct spelling of original column
+headers for
+consistency}\label{import-data-and-correct-spelling-of-original-column-headers-for-consistency}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{../PS\PYZus{}20174392719\PYZus{}1491204439457\PYZus{}log.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{oldbalanceOrg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{oldBalanceOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newbalanceOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newBalanceOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PYZbs{}
+                                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{oldbalanceDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{oldBalanceDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newbalanceDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newBalanceDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+        \PY{n}{df}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:}    step      type    amount     nameOrig  oldBalanceOrig  newBalanceOrig  \textbackslash{}
+        0     1   PAYMENT   9839.64  C1231006815        170136.0       160296.36   
+        1     1   PAYMENT   1864.28  C1666544295         21249.0        19384.72   
+        2     1  TRANSFER    181.00  C1305486145           181.0            0.00   
+        3     1  CASH\_OUT    181.00   C840083671           181.0            0.00   
+        4     1   PAYMENT  11668.14  C2048537720         41554.0        29885.86   
+        
+              nameDest  oldBalanceDest  newBalanceDest  isFraud  isFlaggedFraud  
+        0  M1979787155             0.0             0.0        0               0  
+        1  M2044282225             0.0             0.0        0               0  
+        2   C553264065             0.0             0.0        1               0  
+        3    C38997010         21182.0             0.0        1               0  
+        4  M1230701703             0.0             0.0        0               0  
+\end{Verbatim}
+            
+    \subsubsection{Test if there any missing values in
+DataFrame.}\label{test-if-there-any-missing-values-in-dataframe.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{isna}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{isnull}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{values}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+False
+False
+
+    \end{Verbatim}
+
+    \paragraph{It turns out there are no obvious missing values but, but
+missing information have proxies of numerical value
+0.}\label{it-turns-out-there-are-no-obvious-missing-values-but-but-missing-information-have-proxies-of-numerical-value-0.}
+
+    \subsubsection{2. Exploratory Data
+Analysis}\label{exploratory-data-analysis}
+
+In this section, we present some insights into this dataset using Pandas
+Dataframe methods. More elaborate visualizations follow in subsequent
+sections.
+
+    \paragraph{2.1. Which types of transactions are
+fraudulent?}\label{which-types-of-transactions-are-fraudulent}
+
+As can be seen from the plot below, fraud seems to happen0 only in two
+type of transactions 'TRANSFER' and 'CASHOUT'. 'TRANSFER' transaction
+involves money being sent to a customer/fraudster and 'CASH\_OUT'
+involves transfer of money to a merchant who then pays the
+customer/fraudster in cash.
+
+Another interesting observation is that the number of fraudulent
+TRANSFERs and the number of fraudulent CASH\_OUTs are almost equal. It
+seems that fraud is committed by first transferring funds to another
+account whereby the recipient subsequently cashes it out.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Number of fraudulent transactions with transaction type}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{isFraud} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{type}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n}{f}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+        \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{isFraud} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{type}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{kind}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bar}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Transaction type}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{ax}\PY{o}{=}\PY{n}{ax}\PY{p}{,} \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Number of fraudulent transactions with transaction type
+CASH\_OUT    4116
+TRANSFER    4097
+Name: type, dtype: int64
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{2.2. Correlation Plot}\label{correlation-plot}
+
+We plot correlation among features to better understand the relationship
+between them, specially how does \textbf{isFlaggedFraud} relate to
+others.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Correlation among different features}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{center}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{linewidths}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{linecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{YlGnBu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Correlation among different features
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x7fe3efefecf8>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_12_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    As we can see from correlation matrix, \textbf{isFlaggedFraud} and
+\textbf{step} doesn't correlate with any feature, hence it might be safe
+to reject them. Let's modify the \textbf{step} feature and bin it among
+24 different hours from 0 to 23. We would like to see if fraud
+transactions are linked to specific hour of a day.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{step}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{\PYZpc{}}\PY{k}{24})
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Correlation among different features after step binning}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{center}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{linewidths}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{linecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{white}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{YlGnBu}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Correlation among different features after step binning
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} <matplotlib.axes.\_subplots.AxesSubplot at 0x7fe3efbf2940>
+\end{Verbatim}
+            
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_15_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \emph{Conclusion:} \textbf{isFlaggedFraud} and \textbf{step} feature
+doesn't seem to contribute to a transaction being fraudulent or not.
+Also, since they don't correlate with any other feature, it seems safe
+to discard them from our further exploratory analysis and modelling.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{df}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:}                     step    amount  oldBalanceOrig  newBalanceOrig  \textbackslash{}
+        step            1.000000  0.022373       -0.010058       -0.010299   
+        amount          0.022373  1.000000       -0.002762       -0.007861   
+        oldBalanceOrig -0.010058 -0.002762        1.000000        0.998803   
+        newBalanceOrig -0.010299 -0.007861        0.998803        1.000000   
+        oldBalanceDest  0.027665  0.294137        0.066243        0.067812   
+        newBalanceDest  0.025888  0.459304        0.042029        0.041837   
+        isFraud         0.031578  0.076688        0.010154       -0.008148   
+        isFlaggedFraud  0.003277  0.012295        0.003835        0.003776   
+        step\_bin        0.061729 -0.029676       -0.001015       -0.000858   
+        
+                        oldBalanceDest  newBalanceDest   isFraud  isFlaggedFraud  \textbackslash{}
+        step                  0.027665        0.025888  0.031578        0.003277   
+        amount                0.294137        0.459304  0.076688        0.012295   
+        oldBalanceOrig        0.066243        0.042029  0.010154        0.003835   
+        newBalanceOrig        0.067812        0.041837 -0.008148        0.003776   
+        oldBalanceDest        1.000000        0.976569 -0.005885       -0.000513   
+        newBalanceDest        0.976569        1.000000  0.000535       -0.000529   
+        isFraud              -0.005885        0.000535  1.000000        0.044109   
+        isFlaggedFraud       -0.000513       -0.000529  0.044109        1.000000   
+        step\_bin             -0.001564       -0.006697 -0.031403       -0.000462   
+        
+                        step\_bin  
+        step            0.061729  
+        amount         -0.029676  
+        oldBalanceOrig -0.001015  
+        newBalanceOrig -0.000858  
+        oldBalanceDest -0.001564  
+        newBalanceDest -0.006697  
+        isFraud        -0.031403  
+        isFlaggedFraud -0.000462  
+        step\_bin        1.000000  
+\end{Verbatim}
+            
+    \paragraph{2.3. Are expected merchant accounts properly
+labelled?}\label{are-expected-merchant-accounts-properly-labelled}
+
+    Data Description states that CASH\_OUT involves paying a merchant.
+However, we see for CASH\_OUT transactions there are no merchants among
+the destination accounts.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Are there any merchants among destination accounts for CASH\PYZus{}OUT }\PY{l+s+se}{\PYZbs{}}
+         \PY{l+s+s1}{transactions? }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CASH\PYZus{}OUT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{nameDest}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Are there any merchants among destination accounts for CASH\_OUT transactions? False
+
+    \end{Verbatim}
+
+    In fact, there are no merchants among any originator accounts. Merchants
+are only present in destination accounts for only PAYMENTS.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Are there any transactions having merchants among originator accounts? }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+             \PY{n}{df}\PY{o}{.}\PY{n}{nameOrig}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)} 
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Are there any transactions having merchants among destination accounts? }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+             \PY{n}{df}\PY{o}{.}\PY{n}{nameDest}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{If yes, then what are such trasactions type?}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{o}{.}\PY{n}{nameDest}\PY{o}{.}\PY{n}{str}\PY{o}{.}\PY{n}{contains}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{o}{.}\PY{n}{type}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Are there any transactions having merchants among originator accounts? False
+
+Are there any transactions having merchants among destination accounts? True 
+If yes, then what are such trasactions type?
+
+PAYMENT    2151495
+Name: type, dtype: int64
+
+    \end{Verbatim}
+
+    \emph{Conclusion}: Among the account labels \textbf{nameOrig} and
+\textbf{nameDest}, for all transactions, the merchant prefix of 'M'
+occurs in an unexpected way and exist only for PAYMENTS
+
+    \paragraph{2.4. Are there any relation of nameOrig and nameDest features
+to fraudulent TRANSFERs and
+CASH\_OUTs?}\label{are-there-any-relation-of-nameorig-and-namedest-features-to-fraudulent-transfers-and-cash_outs}
+
+    \paragraph{Hypothesis 1}\label{hypothesis-1}
+
+From the data description and our analysis, the modus operandi for
+committing fraud appeared to be involving first making a TRANSFER to a
+(fraudulent) recipient who in turn cashes it out using a CASH\_OUT
+transaction.
+
+Thus, under this hypothesis, within this two-step process, it is
+expected that the fraudulent account should be present as the
+beneficiary account in a TRANSFER and the originator account in a
+CASH\_OUT. However, the data shows below that there are no such common
+accounts among fraudulent transactions. Thus, the data doesn't support
+our hypothesis.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{dfFraudTransfer} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{isFraud} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TRANSFER}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n}{dfFraudCashout} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{isFraud} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CASH\PYZus{}OUT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Within fraudulent transactions, are there destinations for TRANSFERS }\PY{l+s+se}{\PYZbs{}}
+         \PY{l+s+s1}{that }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{are also originators for CASH\PYZus{}OUTs? }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+             \PY{p}{(}\PY{n}{dfFraudTransfer}\PY{o}{.}\PY{n}{nameDest}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{dfFraudCashout}\PY{o}{.}\PY{n}{nameOrig}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Within fraudulent transactions, are there destinations for TRANSFERS that 
+are also originators for CASH\_OUTs? False
+
+    \end{Verbatim}
+
+    \paragraph{Hypothesis 2}\label{hypothesis-2}
+
+We now postulate that destination accounts for fraudulent TRANSFERs
+could be originator for CASHOUTs that are not detected as Fraud and are
+labeled as genuine. If this is the case, it is possible that there may
+be some merit in the first hypothesis.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{dfNotFraudCashout} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{isFraud} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CASH\PYZus{}OUT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{Are there any fraudulent TRANSFERs whose destination accounts are }\PY{l+s+se}{\PYZbs{}}
+         \PY{l+s+s1}{originators of }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{genuine CASH\PYZus{}OUTs: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}
+             \PY{p}{(}\PY{n}{dfFraudTransfer}\PY{o}{.}\PY{n}{nameDest}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{dfNotFraudCashout}\PY{o}{.}\PY{n}{nameOrig}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{any}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{If yes, what are they?}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{dfFraudTransfer}\PY{p}{[}\PY{n}{dfFraudTransfer}\PY{o}{.}\PY{n}{nameDest}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{dfNotFraudCashout}\PY{o}{.}\PY{n}{nameOrig}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Are there any fraudulent TRANSFERs whose destination accounts are originators of 
+genuine CASH\_OUTs: True
+If yes, what are they?
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:}          step      type      amount     nameOrig  oldBalanceOrig  \textbackslash{}
+         1030443    65  TRANSFER  1282971.57  C1175896731      1282971.57   
+         6039814   486  TRANSFER   214793.32  C2140495649       214793.32   
+         6362556   738  TRANSFER   814689.88  C2029041842       814689.88   
+         
+                  newBalanceOrig     nameDest  oldBalanceDest  newBalanceDest  isFraud  \textbackslash{}
+         1030443             0.0  C1714931087             0.0             0.0        1   
+         6039814             0.0   C423543548             0.0             0.0        1   
+         6362556             0.0  C1023330867             0.0             0.0        1   
+         
+                  isFlaggedFraud  step\_bin  
+         1030443               0        17  
+         6039814               0         6  
+         6362556               0        18  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Follwing genuine CASH\PYZus{}OUTS have originator accounts that }\PY{l+s+se}{\PYZbs{}}
+         \PY{l+s+s2}{are destination }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{accounts in fraudulent TRANSFERs}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{n}{dfNotFraudCashout}\PY{p}{[}\PY{n}{dfNotFraudCashout}\PY{o}{.}\PY{n}{nameOrig}\PY{o}{.}\PY{n}{isin}\PY{p}{(}\PY{n}{dfFraudTransfer}\PY{o}{.}\PY{n}{nameDest}\PY{p}{)}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Follwing genuine CASH\_OUTS have originator accounts that are destination 
+accounts in fraudulent TRANSFERs
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:}          step      type     amount     nameOrig  oldBalanceOrig  \textbackslash{}
+         1168398   132  CASH\_OUT   29084.28  C1023330867         51999.0   
+         2186261   185  CASH\_OUT  214555.85   C423543548             0.0   
+         6149940   546  CASH\_OUT   18091.05  C1714931087        197227.0   
+         
+                  newBalanceOrig     nameDest  oldBalanceDest  newBalanceDest  isFraud  \textbackslash{}
+         1168398        22914.72  C1422447255            0.00        29084.28        0   
+         2186261            0.00  C1066927674      4575179.83      4789735.69        0   
+         6149940       179135.95  C1339132632        66177.84        84268.89        0   
+         
+                  isFlaggedFraud  step\_bin  
+         1168398               0        12  
+         2186261               0        17  
+         6149940               0        18  
+\end{Verbatim}
+            
+    We see above that there are 3 such transactions. Step information(which
+is information about time), for all 3 such transactions, genuine
+CASH\_OUT has occured either way back before a fraudulent transaction
+took place or way after it. Therefore, we can conclude that
+\textbf{nameOrig} and \textbf{nameDest} features neither encode merchant
+accounts in the expected way, nor they are related to fraud
+modus-operandi. So, it will be safe to disregard such feature in our
+further explorations
+
+    \subsubsection{3. Data cleaning}\label{data-cleaning}
+
+    From the exploratory data analysis (EDA) of in previous section, we know
+that fraud only occurs in 'TRANSFER's and 'CASH\_OUT's. So we assemble
+only the corresponding data in X for analysis. Also, we remove the
+irrelevant features found in previous explorations.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{X} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TRANSFER}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o}{|} \PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CASH\PYZus{}OUT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+         
+         \PY{c+c1}{\PYZsh{} Eliminate columns shown to be irrelevant for analysis in the EDA}
+         \PY{n}{X} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nameOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{nameDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{isFlaggedFraud}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Binary\PYZhy{}encoding of labelled data in \PYZsq{}type\PYZsq{}}
+         \PY{n}{X}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{X}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{TRANSFER}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+         \PY{n}{X}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{X}\PY{o}{.}\PY{n}{type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CASH\PYZus{}OUT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{X}\PY{o}{.}\PY{n}{type} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{type}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)} \PY{c+c1}{\PYZsh{} convert dtype(\PYZsq{}O\PYZsq{}) to dtype(int)}
+         \PY{n}{X}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:}     step  type     amount  oldBalanceOrig  newBalanceOrig  oldBalanceDest  \textbackslash{}
+         2      1     0     181.00           181.0             0.0             0.0   
+         3      1     1     181.00           181.0             0.0         21182.0   
+         15     1     1  229133.94         15325.0             0.0          5083.0   
+         19     1     0  215310.30           705.0             0.0         22425.0   
+         24     1     0  311685.89         10835.0             0.0          6267.0   
+         
+             newBalanceDest  isFraud  step\_bin  
+         2             0.00        1         1  
+         3             0.00        1         1  
+         15        51513.44        0         1  
+         19            0.00        0         1  
+         24      2719172.89        0         1  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+2770409
+
+    \end{Verbatim}
+
+    \paragraph{3.1. Imputation of Latent Missing
+Values}\label{imputation-of-latent-missing-values}
+
+    The data has several transactions with zero balances in the destination
+account both before and after a non-zero amount is transacted. The
+fraction of such transactions, where zero denotes a missing value, is
+much larger in fraudulent (50\%) compared to genuine transactions
+(0.06\%).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{Xfraud} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{X}\PY{o}{.}\PY{n}{isFraud} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{XnonFraud} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{X}\PY{o}{.}\PY{n}{isFraud} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{frac\PYZus{}fraud} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{Xfraud}\PY{p}{[}\PY{p}{(}\PY{n}{Xfraud}\PY{o}{.}\PY{n}{oldBalanceDest} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZam{}} \PYZbs{}
+         \PY{p}{(}\PY{n}{Xfraud}\PY{o}{.}\PY{n}{newBalanceDest} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{Xfraud}\PY{o}{.}\PY{n}{amount}\PY{p}{)}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n}{Xfraud}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{The fraction of fraudulent transactions with }\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{oldBalanceDest}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{ = }\PY{l+s+se}{\PYZbs{}}
+         \PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{newBalanceDest}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{ = 0 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{although the transacted }\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{amount}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{ is non\PYZhy{}zero is: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PYZbs{}
+         \PY{n+nb}{format}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n}{frac\PYZus{}fraud}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{frac\PYZus{}genuine} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{XnonFraud}\PY{p}{[}\PY{p}{(}\PY{n}{XnonFraud}\PY{o}{.}\PY{n}{oldBalanceDest} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZam{}} \PYZbs{}
+         \PY{p}{(}\PY{n}{XnonFraud}\PY{o}{.}\PY{n}{newBalanceDest} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{XnonFraud}\PY{o}{.}\PY{n}{amount}\PY{p}{)}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{*} \PY{n+nb}{len}\PY{p}{(}\PY{n}{XnonFraud}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{The fraction of genuine transactions with }\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{oldBalanceDest}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{ = }\PY{l+s+se}{\PYZbs{}}
+         \PY{l+s+s1}{newBalanceDest}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{ = 0 }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{although the transacted }\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{amount}\PY{l+s+se}{\PYZbs{}\PYZsq{}}\PY{l+s+s1}{ is non\PYZhy{}zero is: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{o}{.}\PYZbs{}
+         \PY{n+nb}{format}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n}{frac\PYZus{}genuine}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+The fraction of fraudulent transactions with 'oldBalanceDest' = 'newBalanceDest' = 0 
+although the transacted 'amount' is non-zero is: 0.49555583
+
+The fraction of genuine transactions with 'oldBalanceDest' = newBalanceDest' = 0 
+although the transacted 'amount' is non-zero is: 0.00061762
+
+    \end{Verbatim}
+
+    As we can see zero balances in destination accounts for fraud
+trasactions is strong indicator of fraud, hence we will not impute for
+them with any statistics or from any distribution, as doing so, it will
+mask the fraudulent behaviour in such transactions. We will assign them
+values of -1 which is appropriate for ML-alogrithms
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{X}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{oldBalanceDest} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{newBalanceDest} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{amount} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PYZbs{}
+               \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{oldBalanceDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newBalanceDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
+\end{Verbatim}
+
+
+    The data also has several transactions with zero balances in the
+originating account both before and after a non-zero amount is
+transacted.
+
+In this case, the fraction of such transactions is much smaller in
+fraudulent (0.3\%) compared to genuine transactions (47\%). Once again,
+from similar reasoning as above, instead of imputing a numerical value
+we replace the value of 0 with a null value and then we drop these rows
+null value columns can't be used with many ML algorithms.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{X}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{oldBalanceOrig} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{newBalanceOrig} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{)} 
+                 \PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{amount} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{oldBalanceOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newBalanceOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{nan}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{X} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{Checking if using step\_bin will have any usefull
+impact}\label{checking-if-using-step_bin-will-have-any-usefull-impact}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{fraud} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{X}\PY{o}{.}\PY{n}{isFraud}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{fraud}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{step}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}21}]:} step\_bin
+         0     300
+         1     357
+         2     372
+         3     326
+         4     274
+         5     366
+         6     358
+         7     328
+         8     366
+         9     341
+         10    374
+         11    322
+         12    336
+         13    343
+         14    350
+         15    338
+         16    344
+         17    353
+         18    341
+         19    340
+         20    340
+         21    346
+         22    351
+         23    322
+         Name: step, dtype: int64
+\end{Verbatim}
+            
+    Since all the 24 bins corresponding to the 24 hours seem to have almost
+the same number of entries, it seems unlinkely that step\_bin will be
+useful in detecting frauds. Hence, we drop this column
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{X}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step\PYZus{}bin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Final X before feature
+engineering}\label{final-x-before-feature-engineering}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n}{X}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}23}]:}     type     amount  oldBalanceOrig  newBalanceOrig  oldBalanceDest  \textbackslash{}
+         2      0     181.00           181.0             0.0            -1.0   
+         3      1     181.00           181.0             0.0         21182.0   
+         15     1  229133.94         15325.0             0.0          5083.0   
+         19     0  215310.30           705.0             0.0         22425.0   
+         24     0  311685.89         10835.0             0.0          6267.0   
+         
+             newBalanceDest  isFraud  
+         2            -1.00        1  
+         3             0.00        1  
+         15        51513.44        0  
+         19            0.00        0  
+         24      2719172.89        0  
+\end{Verbatim}
+            
+    \subsubsection{4. Feature Engineering}\label{feature-engineering}
+
+    \paragraph{Checking if the accounts are balanced in origin and
+destination after the transaction can possibly be a good indicator of
+fraud.}\label{checking-if-the-accounts-are-balanced-in-origin-and-destination-after-the-transaction-can-possibly-be-a-good-indicator-of-fraud.}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errorOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newBalanceOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{amount}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{oldBalanceOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errorDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{oldBalanceDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{amount}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newBalanceDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Account not balanced in Orig:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errorOrig}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Account not balanced in Dest:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{errorDest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{/} \PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Account not balanced in Orig: 0.8289980524584377
+Account not balanced in Dest: 0.37119923274934447
+
+    \end{Verbatim}
+
+    Since a significant proportion of accounts are not balanced, it makes
+sense to use them as new features
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} Y = X[\PYZsq{}isFraud\PYZsq{}]}
+         \PY{c+c1}{\PYZsh{} del X[\PYZsq{}isFraud\PYZsq{}]}
+\end{Verbatim}
+
+
+    \subsubsection{5. Model Selection}\label{model-selection}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegressionCV}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{dummy} \PY{k}{import} \PY{n}{DummyClassifier}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{naive\PYZus{}bayes} \PY{k}{import} \PY{n}{GaussianNB}
+         \PY{k+kn}{from} \PY{n+nn}{xgboost} \PY{k}{import} \PY{n}{XGBClassifier}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{RandomForestClassifier}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k}{import} \PY{n}{SVC}
+         
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{GridSearchCV}\PY{p}{,} \PY{n}{RandomizedSearchCV}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{average\PYZus{}precision\PYZus{}score}\PY{p}{,} \PY{n}{confusion\PYZus{}matrix}\PY{p}{,} \PY{n}{classification\PYZus{}report}
+         
+         \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{StandardScaler}
+\end{Verbatim}
+
+
+    \paragraph{Preparing the dataset}\label{preparing-the-dataset}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{y} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{isFraud}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{X}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{isFraud}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Size of dataset:}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Size of dataset:1461843
+
+    \end{Verbatim}
+
+    \paragraph{Train, Test Split and Normalizing the
+dataset}\label{train-test-split-and-normalizing-the-dataset}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+         \PY{n}{scaler} \PY{o}{=} \PY{n}{StandardScaler}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+         \PY{n}{X\PYZus{}train\PYZus{}norm} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{)}
+         \PY{n}{X\PYZus{}test\PYZus{}norm} \PY{o}{=} \PY{n}{scaler}\PY{o}{.}\PY{n}{transform}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{k}{def} \PY{n+nf}{calculate\PYZus{}metrics}\PY{p}{(}\PY{n}{clf}\PY{p}{,} \PY{n}{Xtest}\PY{p}{,} \PY{n}{Ytest}\PY{p}{)}\PY{p}{:}
+             \PY{n}{y\PYZus{}true}\PY{p}{,} \PY{n}{y\PYZus{}pred} \PY{o}{=} \PY{n}{Ytest}\PY{p}{,} \PY{n}{clf}\PY{o}{.}\PY{n}{predict}\PY{p}{(}\PY{n}{Xtest}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{classification\PYZus{}report}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}\PY{p}{)}
+         
+             \PY{n}{acc} \PY{o}{=} \PY{n}{clf}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{Xtest}\PY{p}{,} \PY{n}{Ytest}\PY{p}{)}
+             \PY{n}{avg\PYZus{}prec\PYZus{}score} \PY{o}{=} \PY{n}{average\PYZus{}precision\PYZus{}score}\PY{p}{(}\PY{n}{y\PYZus{}true}\PY{p}{,} \PY{n}{y\PYZus{}pred}\PY{p}{)}
+         
+             \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Accuracy:}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{, Average Precision Score:}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{acc}\PY{p}{,} \PY{n}{avg\PYZus{}prec\PYZus{}score}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{Using a dummy classifier to set a
+baseline}\label{using-a-dummy-classifier-to-set-a-baseline}
+
+We use aaccuracy and average precision rate as performance metrics.
+Accuracy is not reliable in this case as we have a very skewed data set.
+So alternate metrics like AUC curve, average precision rate, etc are
+used.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{dummy\PYZus{}clf} \PY{o}{=} \PY{n}{DummyClassifier}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train\PYZus{}norm}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{calculate\PYZus{}metrics}\PY{p}{(}\PY{n}{dummy\PYZus{}clf}\PY{p}{,} \PY{n}{X\PYZus{}test\PYZus{}norm}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+             precision    recall  f1-score   support
+
+          0       0.99      0.99      0.99    290729
+          1       0.01      0.01      0.01      1640
+
+avg / total       0.99      0.99      0.99    292369
+
+Accuracy:0.9888770697303749, Average Precision Score:0.005611014481596445
+
+    \end{Verbatim}
+
+    Clearly, even a dummy classifier can have a very high accuracy but
+neglegible average precision score.
+
+    To begin with, we start with a very basic classifier
+
+\subsubsection{Gaussian Naive Bayes
+Classifier}\label{gaussian-naive-bayes-classifier}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{n}{nb} \PY{o}{=} \PY{n}{GaussianNB}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train\PYZus{}norm}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{calculate\PYZus{}metrics}\PY{p}{(}\PY{n}{nb}\PY{p}{,} \PY{n}{X\PYZus{}test\PYZus{}norm}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+             precision    recall  f1-score   support
+
+          0       1.00      0.99      0.99    290729
+          1       0.16      0.37      0.22      1640
+
+avg / total       0.99      0.99      0.99    292369
+
+Accuracy:0.9853780667581036, Average Precision Score:0.06095391394894097
+
+    \end{Verbatim}
+
+    With Naive Bayes' we get a slight improvement in average precision,
+however, accuracy goes down. Clearly Gaussian assumption for the data is
+not valid.
+
+    \subsubsection{Logistic Regression
+Classifier}\label{logistic-regression-classifier}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{lr} \PY{o}{=} \PY{n}{LogisticRegressionCV}\PY{p}{(}\PY{n}{cv}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train\PYZus{}norm}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{calculate\PYZus{}metrics}\PY{p}{(}\PY{n}{lr}\PY{p}{,} \PY{n}{X\PYZus{}test\PYZus{}norm}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+             precision    recall  f1-score   support
+
+          0       1.00      1.00      1.00    290729
+          1       0.88      0.47      0.61      1640
+
+avg / total       1.00      1.00      1.00    292369
+
+Accuracy:0.9966822747965756, Average Precision Score:0.41901012412035227
+
+    \end{Verbatim}
+
+    Logistic Regression is quite good for binary classification. In this
+case, it gives both better accuracy and average precision than both
+Dummy and Naive Bayes' clasifier
+
+    \subsubsection{Support Vector Machines
+Classifier}\label{support-vector-machines-classifier}
+
+We use Grid Search CV for hyper-parameter tuning of Support Vector
+Classifier. Support Vector Machines are still considered amongst the
+best for binary classification, so we expect improvement over Logistic
+Regression.
+
+https://datascience.stackexchange.com/questions/989/svm-using-scikit-learn-runs-endlessly-and-never-completes-execution
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} tuned\PYZus{}parameters = [\PYZob{}\PYZsq{}kernel\PYZsq{}: [\PYZsq{}rbf\PYZsq{}], \PYZsq{}gamma\PYZsq{}: [1e\PYZhy{}3, 1e\PYZhy{}4],}
+         \PY{c+c1}{\PYZsh{}                      \PYZsq{}C\PYZsq{}: [1, 10, 100, 1000]\PYZcb{}]}
+         
+         \PY{c+c1}{\PYZsh{} svc\PYZus{}clf = GridSearchCV(SVC(), tuned\PYZus{}parameters, cv=2, scoring=\PYZsq{}average\PYZus{}precision\PYZsq{}, n\PYZus{}jobs=10)}
+         \PY{c+c1}{\PYZsh{} svc\PYZus{}clf = SVC(kernel=\PYZsq{}rbf\PYZsq{}, gamma=\PYZsq{}scale\PYZsq{})}
+         \PY{c+c1}{\PYZsh{} svc\PYZus{}clf.fit(X\PYZus{}train\PYZus{}norm, y\PYZus{}train)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{c+c1}{\PYZsh{} y\PYZus{}true, y\PYZus{}pred = y\PYZus{}test, svc\PYZus{}clf.predict(X\PYZus{}test\PYZus{}norm)}
+         \PY{c+c1}{\PYZsh{} print(classification\PYZus{}report(y\PYZus{}true, y\PYZus{}pred))}
+         
+         \PY{c+c1}{\PYZsh{} svc\PYZus{}clf\PYZus{}accuracy = svc\PYZus{}clf.score(X\PYZus{}test\PYZus{}norm, y\PYZus{}test)}
+         \PY{c+c1}{\PYZsh{} svc\PYZus{}clf\PYZus{}avg\PYZus{}precision\PYZus{}score = average\PYZus{}precision\PYZus{}score(y\PYZus{}test, y\PYZus{}pred)}
+         \PY{c+c1}{\PYZsh{} print(\PYZdq{}SVC\PYZsq{}s Accuracy:\PYZob{}\PYZcb{}, Average Precision Score:\PYZob{}\PYZcb{}\PYZdq{}.format(svc\PYZus{}clf\PYZus{}accuracy, svc\PYZus{}clf\PYZus{}avg\PYZus{}precision\PYZus{}score))}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{c+c1}{\PYZsh{} print(svc\PYZus{}clf.best\PYZus{}params\PYZus{})}
+\end{Verbatim}
+
+
+    \subsubsection{XG Boost}\label{xg-boost}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{xgb} \PY{o}{=} \PY{n}{XGBClassifier}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{calculate\PYZus{}metrics}\PY{p}{(}\PY{n}{xgb}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+             precision    recall  f1-score   support
+
+          0       1.00      1.00      1.00    290729
+          1       1.00      1.00      1.00      1640
+
+avg / total       1.00      1.00      1.00    292369
+
+Accuracy:0.9999931593294775, Average Precision Score:0.9987842799426379
+
+    \end{Verbatim}
+
+    \subsubsection{Random Forest Classifier}\label{random-forest-classifier}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{rf} \PY{o}{=} \PY{n}{RandomForestClassifier}\PY{p}{(}\PY{n}{n\PYZus{}estimators}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+         \PY{n}{calculate\PYZus{}metrics}\PY{p}{(}\PY{n}{rf}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+             precision    recall  f1-score   support
+
+          0       1.00      1.00      1.00    290729
+          1       1.00      1.00      1.00      1640
+
+avg / total       1.00      1.00      1.00    292369
+
+Accuracy:0.9999931593294775, Average Precision Score:0.9987842799426379
+
+    \end{Verbatim}
+
+    \subsubsection{LDA}\label{lda}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{discriminant\PYZus{}analysis} \PY{k}{import} \PY{n}{LinearDiscriminantAnalysis}\PY{p}{,} \PY{n}{QuadraticDiscriminantAnalysis}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{lda} \PY{o}{=} \PY{n}{LinearDiscriminantAnalysis}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train\PYZus{}norm}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/amanraj/anaconda3/envs/neural/lib/python3.6/site-packages/sklearn/discriminant\_analysis.py:388: UserWarning: Variables are collinear.
+  warnings.warn("Variables are collinear.")
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{n}{calculate\PYZus{}metrics}\PY{p}{(}\PY{n}{lda}\PY{p}{,} \PY{n}{X\PYZus{}test\PYZus{}norm}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+             precision    recall  f1-score   support
+
+          0       1.00      1.00      1.00    290729
+          1       0.87      0.38      0.53      1640
+
+avg / total       1.00      1.00      1.00    292369
+
+Accuracy:0.9961965871894763, Average Precision Score:0.33282278832522094
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+         \PY{k+kn}{from} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{backends}\PY{n+nn}{.}\PY{n+nn}{backend\PYZus{}pdf} \PY{k}{import} \PY{n}{PdfPages}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{rcdefaults}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Classifier names}
+         \PY{n}{clas} \PY{o}{=} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dummy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Naive Bayes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LDA}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Logistic Regression}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{XGBoost}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Random Forest}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{performance} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.0056}\PY{p}{,} \PY{l+m+mf}{0.0609}\PY{p}{,} \PY{l+m+mf}{0.3328}\PY{p}{,} \PY{l+m+mf}{0.4190}\PY{p}{,} \PY{l+m+mf}{0.9987}\PY{p}{,} \PY{l+m+mf}{0.9993}\PY{p}{]}
+         \PY{n}{y\PYZus{}pos} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{clas}\PY{p}{)}\PY{p}{)}
+         
+         
+         \PY{n}{ax}\PY{o}{.}\PY{n}{barh}\PY{p}{(}\PY{n}{y\PYZus{}pos}\PY{p}{,} \PY{n}{performance}\PY{p}{,} \PY{n}{align}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                 \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}yticks}\PY{p}{(}\PY{n}{y\PYZus{}pos}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}yticklabels}\PY{p}{(}\PY{n}{clas}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{invert\PYZus{}yaxis}\PY{p}{(}\PY{p}{)} 
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Average Precision Score}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Average precision score for all classifiers}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_84_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
